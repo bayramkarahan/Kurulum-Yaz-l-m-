@@ -1,2 +1,2 @@
-# Kurulum-Yaz-l-m-
+# Kurulum-Yazilimi
 Bir Yazlımın Kurumu İçin Kullanılan Yazılım
