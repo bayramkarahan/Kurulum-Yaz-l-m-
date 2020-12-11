@@ -1,3 +1,22 @@
+/*****************************************************************************
+ *   Copyright (C) 2020 by Bayram KARAHAN                                    *
+ *   <bayramk@gmail.com>                                                     *
+ *                                                                           *
+ *   This program is free software; you can redistribute it and/or modify    *
+ *   it under the terms of the GNU General Public License as published by    *
+ *   the Free Software Foundation; either version 3 of the License, or       *
+ *   (at your option) any later version.                                     *
+ *                                                                           *
+ *   This program is distributed in the hope that it will be useful,         *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of          *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           *
+ *   GNU General Public License for more details.                            *
+ *                                                                           *
+ *   You should have received a copy of the GNU General Public License       *
+ *   along with this program; if not, write to the                           *
+ *   Free Software Foundation, Inc.,                                         *
+ *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .          *
+ *****************************************************************************/
 #include "mainwindow.h"
 #include<QProcess>
 #include<init.h>
@@ -14,27 +33,11 @@ void MainWindow::kurButtonClickSlot()
 
     kontrol();
     if (status==false) return;
-/*
-    QMessageBox::information(this,"Eba Canlı Ders Kurulumu",
-                             "\n"
-                             "Kurulum tamamlanınca alta bulunan butonlar yeşil olacak ve pasifleşecektir..."
-                             "Lütfen bekleyiniz.."
-
-                             "\n"
-                             "\n\t         Bayram KARAHAN"
-                             "\n\tBilişim Teknolojileri Öğretmeni"
-                             "\n"
-                             "\n"
-                             "İstek ve önerileriniz için;"
-                             "\nE-Posta: bayramk@gmail.com"
-                             "\nwww.bayramkarahan.blogspot.com"
-                             "\n");
-                             */
-    QString kmt05="echo "+localPassword->text()+" |sudo -S su -c ' "+QDir::currentPath()+"/install.sh'";
+     QString kmt05="echo "+localPassword->text()+" |sudo -S su -c ' "+QDir::currentPath()+"/install.sh'";
     system(kmt05.toStdString().c_str());
       system("sleep 1");
 
-    QMessageBox::information(this,"Eba Canlı Ders Kurulumu",
+    QMessageBox::information(this,"Program Kurulumu",
                              "\n"
                              "\nKurulum Tamamlandı.."
                              "\n");
@@ -46,28 +49,14 @@ void MainWindow::removeButtonClickSlot()
 
     kontrol();
 if (status==false) return;
-  /*  QMessageBox::information(this,"Eba Canlı Ders Kurulum Kaldırma",
-                             "\n"
-                             "Eklentilerin KAldırılması tamamlanınca alta bulunan butonlar kırmızı olacak ve aktifleşecektir..."
-                             "Lütfen bekleyiniz.."
 
-                             "\n"
-                             "\n\t         Bayram KARAHAN"
-                             "\n\tBilişim Teknolojileri Öğretmeni"
-                             "\n"
-                             "\n"
-                             "İstek ve önerileriniz için;"
-                             "\nE-Posta: bayramk@gmail.com"
-                             "\nwww.bayramkarahan.blogspot.com"
-                             "\n");
-                             */
     QString kmt05="echo "+localPassword->text()+" |sudo -S su -c ' "+QDir::currentPath()+"/remove.sh'";
     system(kmt05.toStdString().c_str());
       system("sleep 1");
 
 
 
-    QMessageBox::information(this,"Eba Canlı Ders Kurulum Kaldırma",
+    QMessageBox::information(this,"Program Kaldırma",
                              "\n"
                              "\nEklentiler Kaldırıldı.."
                              "\n");
@@ -81,7 +70,7 @@ void MainWindow::kontrol()
 
      if(localPassword->text()=="")
     {
-        QMessageBox::information(this,"Eba Canlı Ders Kurulumu","Lütfen Şifre Giriniz..");
+        QMessageBox::information(this,"Program Kurulumu","Lütfen Şifre Giriniz..");
         status=false;
         return;
     }
@@ -89,7 +78,7 @@ void MainWindow::kontrol()
    sudoYetkiKontolSlot();
      if(sudoyetki=="0")
     {
-        QMessageBox::information(this,"Eba Canlı Ders Kurulumu","Lütfen Yetkili Bir Kullanıcı ile Kurulum Yapınız..");
+        QMessageBox::information(this,"Program Kurulumu","Lütfen Yetkili Bir Kullanıcı ile Kurulum Yapınız..");
         status=false;
         return;
     }
@@ -98,7 +87,7 @@ void MainWindow::kontrol()
    passwordKontrolSlot();
    if(passwordstatus=="0")
     {
-        QMessageBox::information(this,"Eba Canlı Ders Kurulumu","Lütfen Şifrenizi Doğru Giriniz..");
+        QMessageBox::information(this,"Program Kurulumu","Lütfen Şifrenizi Doğru Giriniz..");
         status=false;
         return;
     }
