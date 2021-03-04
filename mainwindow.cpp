@@ -20,13 +20,40 @@
 #include "mainwindow.h"
 #include<QProcess>
 #include<init.h>
-
+#include<QTimer>
+#include<QSize>
+#include<QApplication>
+#include<QScreen>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(zamanlama()));
+    timer->start(1000);
+
+    this->setWindowFlags(Qt::Window|
+                       //  Qt::FramelessWindowHint |
+                       //Qt::WindowStaysOnTopHint);
+                        Qt::X11BypassWindowManagerHint);
+    QSize screenSize = qApp->screens()[0]->size();
+
+this->move(screenSize.width()/2,screenSize.height()/2-this->height()/2);
+
+
 init();
 }
+
+
+void MainWindow::zamanlama()
+{
+
+this->activateWindow();
+//klavyeButtonClick();
+    localPassword->setFocus();
+
+}
+
 
 void MainWindow::kurButtonClickSlot()
 {
