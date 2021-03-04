@@ -50,12 +50,16 @@ public slots:
     void sudoYetkiKontolSlot();
     void passwordKontrolSlot();
     void versionKontrolSlot();
+       void zamanlama();
+
+       QString myMessageBox(QString baslik, QString mesaj, QString evet, QString hayir, QString tamam, QMessageBox::Icon icon);
+
 
 private:
-    QString yol="/EbaDers/";
+
     int boy=50;
     int en=50;
-    int btsayisi=4;
+    int btsayisi=5;
     QString version;
     QString sudoyetki="";
     QString user;
@@ -63,12 +67,9 @@ private:
     bool status;
     QLineEdit *localPassword;
     QLineEdit *localUsername;
-    QPushButton *chromeeklentiButton;
-    QPushButton *linkButton;
-    QPushButton *chromeButton;
-    QPushButton *zoomButton;
     QPushButton *kurButton;
     QPushButton *removeButton;
+    QPushButton *closeButton;
 };
 
 #endif // MAINWINDOW_H

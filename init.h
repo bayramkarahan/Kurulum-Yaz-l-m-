@@ -39,13 +39,13 @@ void MainWindow::passwordKontrolSlot()
 QString result="";
 
 
-    QString kmt0="sudo -k|echo "+localPassword->text()+"|sudo -S su -c 'touch ~/ebaeba'";
+    QString kmt0="sudo -k|echo "+localPassword->text()+"|sudo -S su -c 'touch ~/kurkur'";
     qDebug()<<"komut "<<kmt0;
     system(kmt0.toStdString().c_str());
     /****************************/
      QStringList arguments3;
              arguments3 << "-c";
-             QString kmt="sudo -k|echo "+localPassword->text()+"|sudo -S su -c 'ls /root/ebaeba|wc -l'";
+             QString kmt="sudo -k|echo "+localPassword->text()+"|sudo -S su -c 'ls /root/kurkur|wc -l'";
              arguments3 <<kmt;
              QProcess process3;
              process3.start("/bin/bash",arguments3);
@@ -70,7 +70,7 @@ QString result="";
                      passwordstatus="0";
                     // qDebug()<<"Şifre: yanlış "<<passwordstatus;
                  }
-               QString kmt2="echo "+localPassword->text()+" |sudo -S su -c 'rm -rf /root/ebaeba'";
+               QString kmt2="echo "+localPassword->text()+" |sudo -S su -c 'rm -rf /root/kurkur'";
                system(kmt2.toStdString().c_str());
 
 
@@ -149,6 +149,14 @@ user=QDir::homePath().split("/")[2];
     removeButton->setStyleSheet("Text-align:center");
     connect(removeButton, SIGNAL(clicked()),this, SLOT(removeButtonClickSlot()));
 
+    closeButton= new QPushButton(lineWidget);
+    closeButton->setFixedSize(en*5, boy);
+    closeButton->setIconSize(QSize(en*5,boy));
+    closeButton->setText("Çık");
+    closeButton->setStyleSheet("Text-align:center");
+
+    connect(closeButton, &QPushButton::clicked, [=]() {    exit(0);});
+
 
     /**************************************************************/
         // auto widget = new QWidget(this);
@@ -169,6 +177,6 @@ user=QDir::homePath().split("/")[2];
     layout->addWidget(kurButton, 3,0,1,2);
 
     layout->addWidget(removeButton, 4,0,1,2);
-
+layout->addWidget(closeButton, 5,0,1,2);
 
 }
